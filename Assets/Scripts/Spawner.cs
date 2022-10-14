@@ -12,14 +12,27 @@ public class Spawner : MonoBehaviour {
     public Color colour;
     public GizmoType showSpawnRegion;
 
+    private List<Transform> boids = new List<Transform>();
+
+    [ContextMenu("RandomPos")]
+    public void RandomPos()
+    {
+        foreach (var b in boids)
+        {
+            Vector3 pos = b.position + Random.insideUnitSphere * spawnRadius;
+            b.position = pos;
+        }
+    }
+
+    // private List<Transform> 
     void Awake () {
         for (int i = 0; i < spawnCount; i++) {
             Vector3 pos = transform.position + Random.insideUnitSphere * spawnRadius;
             Boid boid = Instantiate (prefab);
             boid.transform.position = pos;
             boid.transform.forward = Random.insideUnitSphere;
-
             boid.SetColour (colour);
+            boids.Add(boid.transform);
         }
     }
 

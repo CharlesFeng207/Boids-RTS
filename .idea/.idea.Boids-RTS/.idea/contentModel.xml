@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\fengchao\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\fengchao\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Boids-RTS.396911355.00" t="ExcludeRecursive" />
+    <e p="D:\repos\Boids-RTS" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="Boid.cs" t="Include" />
+          <e p="BoidCompute.compute" t="Include" />
+          <e p="BoidHelper.cs" t="Include" />
+          <e p="BoidManager.cs" t="Include" />
+          <e p="BoidSettings.cs" t="Include" />
+          <e p="Spawner.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Boids-RTS.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
