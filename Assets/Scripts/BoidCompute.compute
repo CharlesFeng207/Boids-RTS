@@ -2,13 +2,11 @@
 static const int threadGroupSize = 1024;
 
 struct Boid {
-    float3 position;
-    float3 direction;
-
-    float3 flockHeading;
-    float3 flockCentre;
-    float3 seperateHeading;
+    float2 position;
+    float2 flockCentre;
+    float2 seperateHeading;
     int numFlockmates;
+    int isPlayer;
 };
 
 RWStructuredBuffer<Boid> boids;
@@ -22,16 +20,18 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     for (int indexB = 0; indexB < numBoids; indexB ++) {
         if (id.x != indexB) {
             Boid boidB = boids[indexB];
-            float3 offset = boidB.position - boids[id.x].position;
-            float sqrDst = offset.x * offset.x + offset.y * offset.y + offset.z * offset.z;
+            float2 offset = boidB.position - boids[id.x].position;
+            float sqrDst = offset.x * offset.x + offset.y * offset.y;
 
             if (sqrDst < viewRadius * viewRadius) {
                 boids[id.x].numFlockmates += 1;
-                boids[id.x].flockHeading += boidB.direction;
                 boids[id.x].flockCentre += boidB.position;
 
                 if (sqrDst < seperateRadius * seperateRadius) {
-                    boids[id.x].seperateHeading -= offset / sqrDst;
+                    float2 v = offset / sqrDst;
+                    if(boidB.isPlayer > 0)
+                        v = v * 10;
+                    boids[id.x].seperateHeading -= v;
                 }
             }
         }

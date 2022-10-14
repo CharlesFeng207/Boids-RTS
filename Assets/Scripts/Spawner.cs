@@ -12,27 +12,44 @@ public class Spawner : MonoBehaviour {
     public Color colour;
     public GizmoType showSpawnRegion;
 
-    private List<Transform> boids = new List<Transform>();
+    private List<Boid> boids = new List<Boid>();
 
     [ContextMenu("RandomPos")]
     public void RandomPos()
     {
         foreach (var b in boids)
         {
-            Vector3 pos = b.position + Random.insideUnitSphere * spawnRadius;
-            b.position = pos;
+            var randomCircle = Random.insideUnitCircle * spawnRadius;
+            Vector3 pos = b.logicPos + randomCircle;
+            b.logicPos = pos;
         }
     }
 
     // private List<Transform> 
     void Awake () {
-        for (int i = 0; i < spawnCount; i++) {
-            Vector3 pos = transform.position + Random.insideUnitSphere * spawnRadius;
+        for (int i = 0; i < spawnCount; i++)
+        {
+            var randomCircle = Random.insideUnitCircle * spawnRadius;
+            
             Boid boid = Instantiate (prefab);
-            boid.transform.position = pos;
-            boid.transform.forward = Random.insideUnitSphere;
-            boid.SetColour (colour);
-            boids.Add(boid.transform);
+            
+
+            if (i == 0)
+            {
+                boid.gameObject.name = "Player";
+                boid.isPlayer = true;
+                boid.transform.localScale = Vector3.one * 2;
+                boid.SetColour (Color.green);
+                boid.logicPos = Vector2.zero;
+            }
+            else
+            {
+                boid.logicPos = randomCircle;
+                boid.SetColour (colour);
+            }
+            boid.transform.position = new Vector3(boid.logicPos.x, 0, boid.logicPos.y);
+
+            boids.Add(boid);
         }
     }
 

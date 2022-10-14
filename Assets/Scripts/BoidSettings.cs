@@ -3,27 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class BoidSettings : ScriptableObject {
-    // Settings
-    public float minSpeed = 2;
-    public float maxSpeed = 5;
-    public float perceptionRadius = 2.5f;
-    public float seperateRadius = 1;
-    public float maxSteerForce = 3;
+public class BoidSettings : ScriptableObject
+{
+    public float minSpeed;
+    public float maxSpeed;
+    public float steerSpeed;
+    public float trackSpeed;
+    public float perceptionRadius;
+    public float seperateRadius;
 
-    public float alignWeight = 1;
-    public float cohesionWeight = 1;
-    public float seperateWeight = 1;
-
-    public float targetWeight = 1;
-
-    [Header ("Collisions")]
+    public float cohesionWeight;
+    public float seperateWeight;
+    public float targetWeight;
+    public float avoidCollisionWeight;
+    
     public LayerMask obstacleMask;
-    public float boundsRadius = .27f;
-    public float collisionAvoidDst = 5;
+    public float boundsRadius;
+    public float collisionAvoidDst;
 
     public float updateInterval;
     public float targetMaxDistance;
 
-    public float timeScale = 1;
+    public float timeScale;
 }

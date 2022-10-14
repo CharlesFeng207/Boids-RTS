@@ -13,21 +13,20 @@ MonoBehaviour:
   m_Name: Settings
   m_EditorClassIdentifier: 
   minSpeed: 1
-  maxSpeed: 3
+  maxSpeed: 5
+  steerSpeed: 0.1
+  trackSpeed: 0.05
   perceptionRadius: 10
-  seperateRadius: 2
-  maxSteerForce: 8
-  alignWeight: 0
+  seperateRadius: 5
   cohesionWeight: 0.1
   seperateWeight: 0.1
   targetWeight: 1
+  avoidCollisionWeight: 10
   obstacleMask:
     serializedVersion: 2
     m_Bits: 1536
-  boundsRadius: 0.27
-  collisionAvoidDst: 5
+  boundsRadius: 0.01
+  collisionAvoidDst: 3
   updateInterval: 0.1
-  targetMaxDistance: 0.1
-  cohesionMinDistance: 2
-  cohesionMaxDistance: 4
+  targetMaxDistance: 0.01
   timeScale: 1

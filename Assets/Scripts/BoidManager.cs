@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BoidManager : MonoBehaviour {
 
@@ -31,14 +29,13 @@ public class BoidManager : MonoBehaviour {
 
             if (boids != null)
             {
-
                 int numBoids = boids.Length;
                 var boidData = new BoidData[numBoids];
 
                 for (int i = 0; i < boids.Length; i++)
                 {
-                    boidData[i].position = boids[i].transform.position;
-                    boidData[i].direction = boids[i].transform.forward;
+                    boidData[i].position = boids[i].logicPos;
+                    boidData[i].isPlayer = boids[i].isPlayer ? 1 : 0;
                 }
 
                 var boidBuffer = new ComputeBuffer(numBoids, BoidData.Size);
@@ -56,12 +53,12 @@ public class BoidManager : MonoBehaviour {
 
                 for (int i = 0; i < boids.Length; i++)
                 {
-                    boids[i].avgFlockHeading = boidData[i].flockHeading;
                     boids[i].centreOfFlockmates = boidData[i].flockCentre;
                     boids[i].seperateHeading = boidData[i].seperateHeading;
                     boids[i].numPerceivedFlockmates = boidData[i].numFlockmates;
 
-                    boids[i].UpdateBoid();
+                    if(!boids[i].isPlayer)
+                        boids[i].UpdateBoid();
                 }
 
                 boidBuffer.Release();
@@ -70,17 +67,15 @@ public class BoidManager : MonoBehaviour {
     }
 
     public struct BoidData {
-        public Vector3 position;
-        public Vector3 direction;
-
-        public Vector3 flockHeading;
-        public Vector3 flockCentre;
-        public Vector3 seperateHeading;
+        public Vector2 position;
+        public Vector2 flockCentre;
+        public Vector2 seperateHeading;
         public int numFlockmates;
+        public int isPlayer;
 
         public static int Size {
             get {
-                return sizeof (float) * 3 * 5 + sizeof (int);
+                return sizeof (float) * 2 * 3 + sizeof (int) * 2;
             }
         }
     }
