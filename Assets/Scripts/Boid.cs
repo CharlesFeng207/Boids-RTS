@@ -119,7 +119,7 @@ public class Boid : MonoBehaviour
         preFramePos = transform.position;
     }
 
-    Vector2 HandleCollision(Vector2 dir, int loopCount)
+    Vector2 HandleCollision(Vector2 dir, int loopCount, bool first = true)
     {
         if (loopCount == 0) return dir;
         RaycastHit hit;
@@ -138,10 +138,10 @@ public class Boid : MonoBehaviour
             }
 
             var newDir = collisonDir == 1 ? dir1 : dir2;
-            return HandleCollision(newDir.ToLogicPos() * dir.magnitude, loopCount - 1);
+            return HandleCollision(newDir.ToLogicPos() * dir.magnitude, loopCount - 1, first);
         }
 
-        if(loopCount == 2)
+        if(first)
             collisonDir = 0;
         return dir;
     }
