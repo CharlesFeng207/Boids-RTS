@@ -47,7 +47,8 @@ public class Spawner : MonoBehaviour {
                 boid.logicPos = randomCircle;
                 boid.SetColour (colour);
             }
-            boid.transform.position = new Vector3(boid.logicPos.x, 0, boid.logicPos.y);
+
+            boid.transform.position = boid.logicPos.ToWorldPos();
 
             boids.Add(boid);
         }

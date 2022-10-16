@@ -21,12 +21,12 @@ MonoBehaviour:
   cohesionWeight: 0.1
   seperateWeight: 0.1
   targetWeight: 1
-  avoidCollisionWeight: 10
+  avoidCollisionWeight: 1
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 4294967295
   boundsRadius: 0.01
-  collisionAvoidDst: 3
+  collisionAvoidDst: 0.5
   updateInterval: 0.1
   targetMaxDistance: 0.01
   timeScale: 1
