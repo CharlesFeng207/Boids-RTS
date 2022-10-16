@@ -138,7 +138,7 @@ public class Boid : MonoBehaviour
             }
 
             var newDir = collisonDir == 1 ? dir1 : dir2;
-            return HandleCollision(newDir.ToLogicPos() * dir.magnitude, loopCount - 1, first);
+            return HandleCollision(newDir.ToLogicPos() * dir.magnitude, loopCount - 1, false);
         }
 
         if(first)
